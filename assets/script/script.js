@@ -10,10 +10,10 @@ const btnWin = document.querySelector('.btn-win')
 const btnDouble = document.querySelector('.btn-double')
 const btnLose = document.querySelector('.btn-lose')
 
-scoreWin = document.querySelector('.score-number-win')
-scoreLose = document.querySelector('.score-number-lose')
-scoreDouble = document.querySelector('.score-number-double')
-scoreTotal = document.querySelector('.score-total')
+let scoreWin = document.querySelector('.score-number-win')
+let scoreLose = document.querySelector('.score-number-lose')
+let scoreDouble = document.querySelector('.score-number-double')
+let scoreTotal = document.querySelector('.score-total')
 
 
 
@@ -21,12 +21,7 @@ scoreTotal = document.querySelector('.score-total')
 
 addUser.addEventListener('click', () =>{
 
-    userName = prompt('Qual seu nome?')
-
-    if (userName){
-        createUser()
-    } 
-
+   
 });
 
 clearScore.addEventListener('click', () =>{
@@ -37,16 +32,6 @@ clearScore.addEventListener('click', () =>{
     scoreTotal.innerHTML = 0;
  
 })
-
-clearAll.addEventListener('click', () =>{
-
-    
-    cardContainer.remove()   
-    
-});
-
-
-
 
 
 function eventWin() {
@@ -100,30 +85,16 @@ function eventLose(){
 }
 
 
-
-
-
-
-btnDouble.addEventListener('click', () =>{
-
-    eventDouble()
-    
-})
-
 btnLose.addEventListener('click', () =>{
 
     eventLose()
     
 })
 
-
-
-
-
 function createUser() {
  
      
-    cardContainer = document.createElement('div');
+    const cardContainer = document.createElement('div');
     cardContainer.classList.add('card-container');
     container.appendChild(cardContainer);
 
@@ -201,14 +172,36 @@ function createUser() {
     
 }
 
-
 document.addEventListener('click', (e) => {
     const targetEl = e.target;
     const parentEl = targetEl.closest('h4')
+
+    if (targetEl.classList.contains('add-user')){
+        userName = prompt('Qual seu nome?')
+
+        if (userName){
+            createUser()
+        } 
+    
+    }
     
     if (targetEl.classList.contains('btn-win')) {
         parentEl.innerHTML = eventWin()
     }
 
+    if (targetEl.classList.contains('btn-double')) {
+        parentEl.innerHTML = eventDouble()
+    }
 
-})
+    if (targetEl.classList.contains('clear-all')) {
+        
+
+        const cardContainer = document.querySelector('.card-container')
+        
+        if(card){
+        cardContainer.remove()
+
+
+    }
+    
+}})
