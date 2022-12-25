@@ -26,14 +26,14 @@ header {
     padding: .8rem;
     border-radius: .8rem;
     box-shadow: inset .1rem .1rem .5rem;
-    width: 30rem;    
+    width: 25rem;    
 
 }
 
 #add-user {
     
     align-items: center;
-    width: 10rem;
+    width: 8rem;
     font-size: 1rem;
     font-weight: bold;
     border-radius: .8rem;
@@ -47,7 +47,7 @@ header {
 #clear-score {
     
     align-items: center;
-    width: 10rem;
+    width: 8rem;
     font-size: 1rem;
     font-weight: bold;
     border-radius: .8rem;
@@ -61,7 +61,7 @@ header {
 #clear-all {
     
     align-items: center;
-    width: 10rem;
+    width: 8rem;
     font-size: 1rem;
     font-weight: bold;
     border-radius: .8rem;
@@ -83,11 +83,11 @@ header {
 .card {
 
     display: inline-flex;
-    width: 30rem;
+    width: 25rem;
     border-radius: .8rem;
     margin:auto;
     margin-top: 1rem;
-    padding: 1rem;
+    padding: .5rem;
     background-color: deepskyblue;
     box-shadow: inset .1rem .1rem .5rem;
     justify-content: space-between;
@@ -100,18 +100,23 @@ header {
     grid-template-columns: 1fr 1fr 1fr;
     align-content: center;
     margin-top: 2rem;
-    margin-left: 1rem;
-    gap: .5rem;
+    padding: .2rem;
+    gap: .2rem;
 
 }
 
+.user-card p {
+
+   margin: .1rem;
+
+}
 .title-win,
 .title-double,
 .title-lose {
 
     margin-top: .5rem;
     font-size: 1rem;
-    margin-bottom: 0;
+    margin-bottom: 0.2rem;
     font-weight:bolder;
     margin-bottom: -.5rem;
     font-family: 'fira-sans-condensed', sans-serif;
@@ -123,7 +128,7 @@ header {
     position: absolute;
     display: block;
     font-size: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
     margin-left: 1rem;
     border-radius: .8rem;
       
