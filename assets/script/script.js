@@ -6,82 +6,21 @@ const card = document.querySelector('.card')
 const cardContainer = document.querySelector('.card-container')
 const container = document.querySelector('.container')
 
-
 const btnWin = document.querySelector('.btn-win')
 const btnDouble = document.querySelector('.btn-double')
 const btnLose = document.querySelector('.btn-lose')
 
-
-/*
+let usersScore = document.querySelector('.score-total') 
 let scoreWin = document.querySelector('.score-number-win')
 let scoreDouble = document.querySelector('.score-number-double')
-let scoreLose = document.querySelector('.score-number-lose')
+let scoreLose = document.querySelector('.sore-number-lose')
 
-
-
-
-function eventWin() {
-        
-    addWin = scoreWin.innerHTML
-
-    newScore = parseInt(addWin)
-
-    scoreWin.innerHTML = newScore +1
-    
-    addScoreTotal = scoreTotal.innerHTML
-
-    newScoreTotal = parseInt(addScoreTotal)
-
-    scoreTotal.innerHTML = newScoreTotal +1
-        
-    console.log(addWin)
-}
-
-        
-
-function eventDouble() {
-
-    addWin = scoreDouble.innerHTML
-
-    newScore = parseInt(addWin)
-
-    scoreDouble.innerHTML = newScore +1
-    
-    addScoreTotal = scoreTotal.innerHTML
-
-    newScoreTotal = parseInt(addScoreTotal)
-
-    scoreTotal.innerHTML = newScoreTotal +2
-   
-}
-
-function eventLose(){
-    
-    addLose = scoreLose.innerHTML
-
-    newScore = parseInt(addLose)
-
-    scoreLose.innerHTML = newScore +1
-    
-    addScoreTotal = scoreTotal.innerHTML
-
-    newScoreTotal = parseInt(addScoreTotal)
-
-    scoreTotal.innerHTML = newScoreTotal -1
-
-
-}
-
-*/
+//
 
 function createUser() {
     
-    const container = document.querySelector('.container')
+    const cardContainer = document.querySelector('.card-container')
      
-    const cardContainer = document.createElement('div');
-    cardContainer.classList.add('card-container');
-    container.appendChild(cardContainer);
-
     const card = document.createElement("div");
     card.classList.add("card");
     cardContainer.appendChild(card);    
@@ -91,13 +30,12 @@ function createUser() {
     card.appendChild(cardTitle);
 
     const cardName = document.createElement("h3");
-    cardName.innerText = userName;
+    cardName.innerText = userName.toUpperCase();
     cardTitle.appendChild(cardName);
 
     const userCard = document.createElement('div');
     userCard.classList.add('user-card');
     card.appendChild(userCard);
-
 
 
 
@@ -119,8 +57,6 @@ function createUser() {
     btnWin.classList.add('btn-win');
     btnWin.innerHTML = "+";
     cardWin.appendChild(btnWin);
-
-
 
 
     
@@ -181,28 +117,13 @@ function createUser() {
     
 }
 
-
 //
 
 document.addEventListener('click', (e) => {
     const targetEl = e.target;
     const parentEl = targetEl.closest("div")
     const parentCard = parentEl.closest(".card")
-     
-    /*
-    if(parentEl && parentEl.querySelector("h4") && parentEl.classList.contains('.score-total')
-    && parentEl.classList.contains('.score-number-win')
-    && parentEl.classList.contains('.score-number-double')
-    && parentEl.classList.contains('.score-number-lose')) {
     
-        scoreWin = parentCard.querySelector('.score-number-win')
-        scoreDouble = parentCard.querySelector('.score-number-double')
-        scoreLose = parentCard.querySelector('.score-number-lose')
-        totalScore = parentCard.querySelector('.score-total')
-    
-    }
-    */
-
     if (targetEl.classList.contains("add-user")){
 
         userName = prompt("Qual seu nome?")
@@ -214,49 +135,70 @@ document.addEventListener('click', (e) => {
     }
 
     
-    
     if (targetEl.classList.contains("btn-win")) {
 
-        scoreWin = parentCard.querySelector('.score-number-win')
+        scoreWin = parentEl.querySelector('.score-number-win')
         totalScore = parentCard.querySelector('.score-total')
     
         
-         addWin = scoreWin.innerText
-
-         newScore = parseInt(addWin)
-
-        scoreWin.innerHTML = newScore +1
-        
-         addScoreTotal = totalScore.innerHTML
-
-         newScoreTotal = parseInt(addScoreTotal)
-
+        addWin = scoreWin.innerText
+        newScore = parseInt(addWin)
+        scoreWin.innerHTML = newScore +1        
+        addScoreTotal = totalScore.innerHTML
+        newScoreTotal = parseInt(addScoreTotal)
         totalScore.innerHTML = newScoreTotal +1
-            
-
-
-        console.log(scoreWin)
-        console.log(typeof scoreWin)
-        console.log(typeof parentEl)
-        console.log(typeof targetEl)
+                
     }
 
+    
+    if (targetEl.classList.contains("btn-double")) {
 
+        scoreDouble = parentEl.querySelector('.score-number-double')
+        totalScore = parentCard.querySelector('.score-total')
+    
+        addDouble = scoreDouble.innerText
+        newScore = parseInt(addDouble)
+        scoreDouble.innerHTML = newScore +1        
+        addScoreTotal = totalScore.innerHTML
+        newScoreTotal = parseInt(addScoreTotal)
+        totalScore.innerHTML = newScoreTotal +2
+    }
+    
 
+    if (targetEl.classList.contains("btn-lose")) {
 
+        scoreLose = parentEl.querySelector('.score-number-lose')
+        totalScore = parentCard.querySelector('.score-total')
+    
+        
+        addLose = scoreLose.innerText
 
+        newScore = parseInt(addLose)
 
+        scoreLose.innerHTML = newScore +1
+        
+        addScoreTotal = totalScore.innerHTML
 
+        newScoreTotal = parseInt(addScoreTotal)
 
+        totalScore.innerHTML = newScoreTotal -1
+    }
+
+    
+    if (targetEl.classList.contains("clear-score")) {
+        
+
+        
+    }
 
 
     if (targetEl.classList.contains("clear-all")) {
         
         const cardContainer = document.querySelector(".card-container")
-        if(cardContainer){
+        
         cardContainer.remove()
-        }
+        
     }
 
-
+    
 })
