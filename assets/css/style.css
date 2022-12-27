@@ -8,8 +8,9 @@
 
 body {
     
-    background-image: url(/assets/img/background.webp);
+    background-image: url('./assets/img/background.webp');
     background-repeat: no-repeat;
+    background-color: #1A96E7;
     background-size:cover;
     justify-content: center;
     align-items: center;
