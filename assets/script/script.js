@@ -31,7 +31,8 @@ function createUser() {
     card.appendChild(cardTitle);
 
     const cardName = document.createElement("h3");
-    cardName.innerText = userName.toUpperCase();
+    userName = newName.toUpperCase();
+    cardName.innerText = userName.slice(0,7);
     cardTitle.appendChild(cardName);
 
     const userCard = document.createElement('div');
@@ -56,7 +57,7 @@ function createUser() {
     
     const btnWin = document.createElement('button');
     btnWin.classList.add('btn-win');
-    btnWin.innerHTML = "+";
+    btnWin.innerHTML = "<i class='fa-solid fa-check'></i>";
     cardWin.appendChild(btnWin);
 
 
@@ -77,7 +78,7 @@ function createUser() {
 
     const btnDouble = document.createElement('button');
     btnDouble.classList.add('btn-double');
-    btnDouble.innerHTML = "↕";
+    btnDouble.innerHTML = "<i class='fa-solid fa-check-double'></i>";
     cardDouble.appendChild(btnDouble);
 
 
@@ -99,7 +100,7 @@ function createUser() {
  
     const btnLose = document.createElement('button');
     btnLose.classList.add('btn-lose');
-    btnLose.innerHTML = "-";
+    btnLose.innerHTML = "<i class='fa-solid fa-skull'></i>";
     cardLose.appendChild(btnLose);
 
 
@@ -128,9 +129,9 @@ document.addEventListener('click', (e) => {
     
     if (targetEl.classList.contains("add-user")){
 
-        userName = prompt("Qual seu nome?")
+        newName = prompt("Qual seu nome?")
 
-        if (userName){
+        if (newName){
             createUser()
         } 
     
