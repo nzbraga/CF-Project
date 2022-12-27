@@ -1,3 +1,4 @@
+
 const addUser = document.querySelector('#add-user')
 const clearScore = document.querySelector('#clear-score')
 const clearAll = document.querySelector('#clear-all')
@@ -120,6 +121,7 @@ function createUser() {
 //
 
 document.addEventListener('click', (e) => {
+    
     const targetEl = e.target;
     const parentEl = targetEl.closest("div")
     const parentCard = parentEl.closest(".card")
@@ -133,7 +135,6 @@ document.addEventListener('click', (e) => {
         } 
     
     }
-
     
     if (targetEl.classList.contains("btn-win")) {
 
@@ -149,7 +150,6 @@ document.addEventListener('click', (e) => {
         totalScore.innerHTML = newScoreTotal +1
                 
     }
-
     
     if (targetEl.classList.contains("btn-double")) {
 
@@ -164,7 +164,6 @@ document.addEventListener('click', (e) => {
         totalScore.innerHTML = newScoreTotal +2
     }
     
-
     if (targetEl.classList.contains("btn-lose")) {
 
         scoreLose = parentEl.querySelector('.score-number-lose')
@@ -183,20 +182,36 @@ document.addEventListener('click', (e) => {
 
         totalScore.innerHTML = newScoreTotal -1
     }
-
     
     if (targetEl.classList.contains("clear-score")) {
         
-
         
-    }
+        let cardScoreContainer = cardContainer.querySelectorAll('h4')
+        let cardScoreTotal = cardContainer.getElementsByClassName('score-total')
 
+        for ( i= 0, len = cardScoreContainer.length; i < len; i++) {
+            
+            cardScoreContainer[i].innerHTML = "0"
+        }
+
+        for ( i= 0, len = cardScoreTotal.length; i < len; i++) {
+            
+            cardScoreTotal[i].innerHTML = "0"
+        }
+
+            
+    }
 
     if (targetEl.classList.contains("clear-all")) {
         
-        const cardContainer = document.querySelector(".card-container")
+
+        let clearAllScore = cardContainer.querySelectorAll('.card')
         
-        cardContainer.remove()
+        for ( i= 0, len = clearAllScore.length; i < len; i++) {
+            
+            clearAllScore[i].remove()
+        }
+
         
     }
 
