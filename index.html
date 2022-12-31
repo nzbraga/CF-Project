@@ -11,104 +11,78 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <script src="./assets/script/script.js" defer></script>
 
-    <title>Cerol Fininho 2.0</title>
+    <title>FESTIVAL 0.0</title>
     
     </head>
 
 <body>
 
     <header>
-        <h1>CeroL FininhO</h1>
-    </header>
-
-    <main>
-
-        <div id="container" class="container">
-
-            <div class="new-user">
-                <button class="add-user" id="add-user"><i class="fa-solid fa-user-plus"></i></button>
-                <button class="clear-score" id="clear-score"><i class="fa-solid fa-trash"></i></button>
-                <button class="clear-all" id="clear-all"><i class="fa-solid fa-user-slash"></i></button>
-            </div>
-            
-            <div class="card-container"></div>
-            <!--
-            <div class="card-container">
-
-                <div class="card">
-                    <div class="card-title">
-                        <h3>Rafael Sorriso</h3>
-                    </div>
-
-                    <div class="user-card">
-                        
-                        <div class="card-win">
-                            <p class="title-win">CORTOU</p>
-                            <h4 class="score-number-win">0</h4>
-                            <button class="btn-win">+</button>
-                        </div>
-
-                        <div class="card-double">
-                            <p class="title-double">APAROU</p>
-                            <h4 class="score-number-double">0</h4>
-                            <button class="btn-double">↕</button>
-                        </div>
-
-                        <div class="card-lose">
-                            <p class="title-lose">CORTADO</p>                    
-                            <h4 class="score-number-lose">0</h4>
-                            <button class="btn-lose">-</button>
-                        </div>
-
-                    </div>
-
-                    <div class="user-score">
-                        <p class="score-total">0</p>
-                    </div>                
-                </div>
-
-            </div>
-
-            <div class="card-container">
-
-                <div class="card">
-                    <div class="card-title">
-                        <h3>Rafael Sorriso</h3>
-                    </div>
-
-                    <div class="user-card">
-                        
-                        <div class="card-win">
-                            <p class="title-win">CORTOU</p>
-                            <h4 class="score-number-win">0</h4>
-                            <button type="button" class="btn-win">+</button>
-                        </div>
-
-                        <div class="card-double">
-                            <p class="title-double">APAROU</p>
-                            <h4 class="score-number-double">0</h4>
-                            <button type="button" class="btn-double">↕</button>
-                        </div>
-
-                        <div class="card-lose">
-                            <p class="title-lose">CORTADO</p>                    
-                            <h4 class="score-number-lose">0</h4>
-                            <button type="button" class="btn-lose">-</button>
-                        </div>
-
-                    </div>
-
-                    <div class="user-score">
-                        <p class="score-total">0</p>
-                    </div>                
-                </div>
-
-            </div>
-            -->
-                   
+        
+        <div class="top-menu">  
+            <button class="logo-mushroom"><i class="fa-regular fa-mushroom"></i></button>          
+            <h1> FESTIVAL </h1>
+            <button id="btn-menu" class="btn-menu"><i class="fa-solid fa-bars"></i></button>
+        </div>
+        
+        <div id="btn-container" class="hide">
+            <button class="add-user" id="add-user"><i class="fa-solid fa-user-plus"></i></button>
+            <button class="clear-score" id="clear-score"><i class="fa-solid fa-eraser"></i></button>
+            <button class="clear-all" id="clear-all"><i class="fa-solid fa-user-xmark"></i></button>
+            <button class="btn-save" id="btn-save"><i class="fa-solid fa-floppy-disk"></i></button>
+            <button id="btn-open" class="btn-open"><i class="fa-regular fa-folder-open"></i></button>
+            <button id="btn-delete" class="btn-delete" ><i class="fa-solid fa-trash"></i></button>
+            <button id="btn-title-menu" class="btn-title-menu"><i class="fa-solid fa-pen"></i></button>
         </div>
 
+        <div id="title-menu">
+            <h2 id="title-top-menu" class="">NOME DO FESTIVAL</h2>            
+        </div>
+        
+    </header>
+    
+            
+    <main>
+       <!--
+        <form class="card">
+            <div class="card-header">
+                <button class="btn-edit-card"><i class="fa-solid fa-user-pen"></i></button>
+                <h2 class="card-title">NEYLSON</h2>                        
+                <button class="btn-reset-card"><i class="fa-solid fa-eraser"></i></button>
+                <button class="btn-del-card"><i class="fa-solid fa-x"></i></button>
+            </div>
+                        
+            <div class="card-score">
 
+                <div class="card-win">
+                    <p class="title">CORTOU</p>
+                    <button class="btn-win-up"><i class="fa-solid fa-caret-up"></i></button>
+                    <h3 class="score-number-win">0</h3>
+                    <button class="btn-win-down"><i class="fa-sharp fa-solid fa-caret-down"></i>
+                </div>
+
+                <div class="card-double">
+                    <p class="title">APAROU</p>
+                    <button class="btn-double-up"><i class="fa-solid fa-caret-up"></i></button>
+                    <h3 class="score-number-double">0</h3>
+                    <button class="btn-double-down"><i class="fa-sharp fa-solid fa-caret-down"></i>
+                    </div>
+
+                <div class="card-lose">
+                    <p class="title">CORTADO</p>                    
+                    <button class="btn-lose-up"><i class="fa-solid fa-caret-up"></i></button>
+                    <h3 class="score-number-lose">0</h3>
+                    <button class="btn-lose-down"><i class="fa-sharp fa-solid fa-caret-down"></i></button>
+                </div>
+            
+                <div class="user-score">
+                    <p>PONTOS</p>
+                    <h4 class="score-total">0</h4>
+                </div> 
+            </div> 
+
+        </form>
+        -->
     </main>
 
 </body>

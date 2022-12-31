@@ -1,149 +1,34 @@
+const header = document.querySelector('header');
+const main = document.querySelectorAll('main');
 
-const addUser = document.querySelector('#add-user')
-const clearScore = document.querySelector('#clear-score')
-const clearAll = document.querySelector('#clear-all')
+document.addEventListener('click', (e)=>{
+    e.preventDefault()
 
-const card = document.querySelector('.card')
-const cardContainer = document.querySelector('.card-container')
-const container = document.querySelector('.container')
-
-const btnWin = document.querySelector('.btn-win')
-const btnDouble = document.querySelector('.btn-double')
-const btnLose = document.querySelector('.btn-lose')
-
-let usersScore = document.querySelector('.score-total') 
-let scoreWin = document.querySelector('.score-number-win')
-let scoreDouble = document.querySelector('.score-number-double')
-let scoreLose = document.querySelector('.sore-number-lose')
-
-//
-
-function createUser() {
-    
-    const cardContainer = document.querySelector('.card-container')
-     
-    const card = document.createElement("div");
-    card.classList.add("card");
-    cardContainer.appendChild(card);    
-    
-    const cardTitle = document.createElement("div");
-    cardTitle.classList.add("card-title");
-    card.appendChild(cardTitle);
-
-    const cardName = document.createElement("h3");
-    userName = newName.toUpperCase();
-    cardName.innerText = userName.slice(0,7);
-    cardTitle.appendChild(cardName);
-
-    const userCard = document.createElement('div');
-    userCard.classList.add('user-card');
-    card.appendChild(userCard);
-
-
-
-    const cardWin = document.createElement('div');
-    cardWin.classList.add('card-win');
-    userCard.appendChild(cardWin);
-
-    const titleWin = document.createElement('p');
-    titleWin.classList.add('title-win');
-    titleWin.innerHTML = "CORTOU";
-    cardWin.appendChild(titleWin);
-
-    const scoreWin = document.createElement('h4');
-    scoreWin.classList.add('score-number-win');
-    scoreWin.innerHTML = "0";
-    cardWin.appendChild(scoreWin);
-    
-    const btnWin = document.createElement('button');
-    btnWin.classList.add('btn-win');
-    btnWin.innerHTML = "<i class='fa-solid fa-check'></i>";
-    cardWin.appendChild(btnWin);
-
-
-    
-    const cardDouble = document.createElement('div');
-    cardDouble.classList.add('card-double');
-    userCard.appendChild(cardDouble);
-
-    const titleDouble = document.createElement('p');
-    titleDouble.classList.add('title-double');
-    titleDouble.innerHTML = "APAROU";
-    cardDouble.appendChild(titleDouble);
-
-    const scoreDouble = document.createElement('h4');
-    scoreDouble.classList.add('score-number-double');
-    scoreDouble.innerHTML = "0";
-    cardDouble.appendChild(scoreDouble);
-
-    const btnDouble = document.createElement('button');
-    btnDouble.classList.add('btn-double');
-    btnDouble.innerHTML = "<i class='fa-solid fa-check-double'></i>";
-    cardDouble.appendChild(btnDouble);
-
-
-
-
-    const cardLose = document.createElement('div');
-    cardLose.classList.add('card-lose');
-    userCard.appendChild(cardLose);
-
-    const titleLose = document.createElement('p');
-    titleLose.classList.add('title-lose');
-    titleLose.innerHTML = "CORTADO";
-    cardLose.appendChild(titleLose);
-
-    const scoreLose = document.createElement('h4');
-    scoreLose.classList.add('score-number-lose');
-    scoreLose.innerHTML = "0";
-    cardLose.appendChild(scoreLose);
- 
-    const btnLose = document.createElement('button');
-    btnLose.classList.add('btn-lose');
-    btnLose.innerHTML = "<i class='fa-solid fa-skull'></i>";
-    cardLose.appendChild(btnLose);
-
-
-
-
-    const userScore = document.createElement('div');
-    userScore.classList.add('user-score');
-    card.appendChild(userScore);
-
-    const scoreTotal = document.createElement('p');
-    scoreTotal.classList.add('score-total');
-    scoreTotal.innerHTML = "0";
-    userScore.appendChild(scoreTotal);
-
-    cardContainer.appendChild(card)
-    
-}
-
-//
-
-document.addEventListener('click', (e) => {
-    
     const targetEl = e.target;
-    const parentEl = targetEl.closest("div")
-    const parentCard = parentEl.closest(".card")
-    
-    if (targetEl.classList.contains("add-user")){
+    const parentEl = targetEl.closest("div");
+    const parentForm = targetEl.closest("form");
+    const parentCard = parentEl.closest(".card-score");
 
-        newName = prompt("Qual seu nome?")
+    
+
+
+     if (targetEl.classList.contains("add-user")){
+
+        newName = prompt("Qual o nome?")
 
         if (newName){
             createUser()
         } 
     
     }
-    
-    if (targetEl.classList.contains("btn-win")) {
 
-        scoreWin = parentEl.querySelector('.score-number-win')
-        totalScore = parentCard.querySelector('.score-total')
+    if (targetEl.classList.contains("btn-win-up")) {
+
+        scoreWin = parentEl.querySelector('h3')
+        totalScore = parentCard.querySelector('h4')
     
         
-        addWin = scoreWin.innerText
+        addWin = scoreWin.innerHTML
         newScore = parseInt(addWin)
         scoreWin.innerHTML = newScore +1        
         addScoreTotal = totalScore.innerHTML
@@ -151,70 +36,270 @@ document.addEventListener('click', (e) => {
         totalScore.innerHTML = newScoreTotal +1
                 
     }
-    
-    if (targetEl.classList.contains("btn-double")) {
+    if (targetEl.classList.contains("btn-win-down")) {
 
-        scoreDouble = parentEl.querySelector('.score-number-double')
-        totalScore = parentCard.querySelector('.score-total')
+        scoreWin = parentEl.querySelector('h3')
+        totalScore = parentCard.querySelector('h4')
+        
+        addWin = scoreWin.innerHTML
+        newScore = parseInt(addWin)
+        scoreWin.innerHTML = newScore -1        
+        addScoreTotal = totalScore.innerHTML
+        newScoreTotal = parseInt(addScoreTotal)
+        totalScore.innerHTML = newScoreTotal -1
+                
+    }    
+    if (targetEl.classList.contains("btn-double-up")) {
+
+        scoreDouble = parentEl.querySelector('h3')
+        totalScore = parentCard.querySelector('h4')
     
-        addDouble = scoreDouble.innerText
+        addDouble = scoreDouble.innerHTML
         newScore = parseInt(addDouble)
         scoreDouble.innerHTML = newScore +1        
         addScoreTotal = totalScore.innerHTML
         newScoreTotal = parseInt(addScoreTotal)
         totalScore.innerHTML = newScoreTotal +2
-    }
+    }    
+    if (targetEl.classList.contains("btn-double-down")) {
+
+        scoreDouble = parentEl.querySelector('h3')
+        totalScore = parentCard.querySelector('h4')
     
-    if (targetEl.classList.contains("btn-lose")) {
-
-        scoreLose = parentEl.querySelector('.score-number-lose')
-        totalScore = parentCard.querySelector('.score-total')
-    
-        
-        addLose = scoreLose.innerText
-
-        newScore = parseInt(addLose)
-
-        scoreLose.innerHTML = newScore +1
-        
+        addDouble = scoreDouble.innerHTML
+        newScore = parseInt(addDouble)
+        scoreDouble.innerHTML = newScore -1        
         addScoreTotal = totalScore.innerHTML
-
         newScoreTotal = parseInt(addScoreTotal)
+        totalScore.innerHTML = newScoreTotal -2
+    }    
+    if (targetEl.classList.contains("btn-lose-up")) {
 
+        scoreLose = parentEl.querySelector('h3')
+        totalScore = parentCard.querySelector('h4')
+    
+        
+        addLose = scoreLose.innerHTML
+        newScore = parseInt(addLose)
+        scoreLose.innerHTML = newScore +1        
+        addScoreTotal = totalScore.innerHTML
+        newScoreTotal = parseInt(addScoreTotal)
         totalScore.innerHTML = newScoreTotal -1
     }
-    
+    if (targetEl.classList.contains("btn-lose-down")) {
+
+        scoreLose = parentEl.querySelector('h3')
+        totalScore = parentCard.querySelector('h4')
+        
+        addLose = scoreLose.innerHTML
+        newScore = parseInt(addLose)
+        scoreLose.innerHTML = newScore -1        
+        addScoreTotal = totalScore.innerHTML
+        newScoreTotal = parseInt(addScoreTotal)
+        totalScore.innerHTML = newScoreTotal +1
+    }    
     if (targetEl.classList.contains("clear-score")) {
         
-        
-        let cardScoreContainer = cardContainer.querySelectorAll('h4')
-        let cardScoreTotal = cardContainer.getElementsByClassName('score-total')
-
-        for ( i= 0, len = cardScoreContainer.length; i < len; i++) {
+        if (confirm("Apagar TODOS Pontos?") == true) {
             
-            cardScoreContainer[i].innerHTML = "0"
-        }
-
-        for ( i= 0, len = cardScoreTotal.length; i < len; i++) {
+            let mainContainer = document.querySelectorAll('h3')
+            let mainScore = document.querySelectorAll('h4')
             
-            cardScoreTotal[i].innerHTML = "0"
-        }
-
-            
-    }
-
+            for ( i= 0, len = mainContainer.length; i < len; i++) {   
+                mainContainer[i].innerHTML = "0"
+            }
+                
+            for ( i= 0, len = mainScore.length; i < len; i++) {
+            mainScore[i].innerHTML = "0"
+        }            
+    }}        
     if (targetEl.classList.contains("clear-all")) {
         
-
-        let clearAllScore = cardContainer.querySelectorAll('.card')
+        if (confirm("Apagar TODOS Jogadores?") == true) {
+        let clearAllCards = document.querySelectorAll('.card')
         
-        for ( i= 0, len = clearAllScore.length; i < len; i++) {
-            
-            clearAllScore[i].remove()
-        }
+        for(i=0, len = clearAllCards.length; i < len; i++){
 
+            clearAllCards[i].remove()
+        }        
+    }}
+    if(targetEl.classList.contains('btn-del-card')){
+        if (confirm("Apagar esse Jogador?") == true) {
+        parentForm.remove()
+    }}
+    if(targetEl.classList.contains('btn-edit-card')){
+
+        newName = prompt("Qual o nome?")
+        if (newName){
+            
+
+            editUser()
+        } 
+    }
+    if(targetEl.classList.contains('btn-reset-card')){
+        scoreUser = parentForm.querySelectorAll('h3')
+        scoreUserTotal = parentForm.querySelectorAll('h4')
+
+        for(i=0, len = scoreUser.length; i < len; i++){
+
+            
+            scoreUser[i].innerHTML = "0"
+        }
+        for(i=0, len = scoreUserTotal.length; i < len; i++){
+
+            
+            scoreUserTotal[i].innerHTML = "0"
+        }
+        
         
     }
+    if(targetEl.classList.contains('btn-menu')){
+
+       toggleFoms()
+    }
+    if(targetEl.classList.contains('btn-title-menu')){
+        
+        newTitle = prompt("Qual nome do Festival?")
+        if (newTitle){
+            
+            let titleTop = document.getElementById('title-top-menu')
+
+            titleTop.innerHTML = newTitle
+        } 
+
+        toggleFoms()
+
+    }
+
+
+})
+function createUser() {
+    
+    let cardContainer = document.querySelector('main');
+
+    let card = document.createElement("form");
+    card.classList.add("card");
+    cardContainer.appendChild(card);    
+    
+    let cardHeader = document.createElement("div");
+    cardHeader.classList.add("card-header");
+    card.appendChild(cardHeader);
+
+    let btnEditCard = document.createElement("button");
+    btnEditCard.classList.add('btn-edit-card');
+    btnEditCard.innerHTML = '<i class="fa-solid fa-user-pen"></i>';
+    cardHeader.appendChild(btnEditCard);
+
+    let cardTitle = document.createElement("h2");
+    userName = newName.toUpperCase();
+    cardTitle.innerText = userName.slice(0,8);
+    cardHeader.appendChild(cardTitle);
+    
+    let btnResetCard = document.createElement("button");
+    btnResetCard.classList.add('btn-reset-card');
+    btnResetCard.innerHTML = '<i class="fa-solid fa-eraser"></i>';
+    cardHeader.appendChild(btnResetCard);
+
+    let btnDelCard = document.createElement("button");
+    btnDelCard.classList.add('btn-del-card');
+    btnDelCard.innerHTML = '<i class="fa-solid fa-x"></i>';
+    cardHeader.appendChild(btnDelCard);
+    
+    let cardScore = document.createElement("div");
+    cardScore.classList.add("card-score");
+    card.appendChild(cardScore);
+//
+    let cardWin = document.createElement("div");
+    cardWin.classList.add("card-win");
+    cardScore.appendChild(cardWin);
+
+    let scoreTitleWin = document.createElement("p");
+    scoreTitleWin.classList.add("score-title");
+    scoreTitleWin.innerHTML = "CORTOU"
+    cardWin.appendChild(scoreTitleWin);
+
+    let btnWinUp = document.createElement("button");
+    btnWinUp.classList.add('btn-win-up');
+    btnWinUp.innerHTML = '<i class="fa-solid fa-caret-up">';
+    cardWin.appendChild(btnWinUp);
+    
+    let scoreNumberWin = document.createElement('h3')
+    scoreNumberWin.classList.add('score-sumber-win')
+    scoreNumberWin.innerHTML = "0"
+    cardWin.appendChild(scoreNumberWin)
+
+    let btnWinDown = document.createElement("button");
+    btnWinDown.classList.add('btn-win-down');
+    btnWinDown.innerHTML = '<i class="fa-solid fa-caret-down">';
+    cardWin.appendChild(btnWinDown);
+//
+    let cardDouble = document.createElement("div");
+    cardDouble.classList.add("Score-double");
+    cardScore.appendChild(cardDouble);
+
+    let scoreTitleDouble = document.createElement("p");
+    scoreTitleDouble.classList.add("score-title");
+    scoreTitleDouble.innerHTML = "APAROU"
+    cardDouble.appendChild(scoreTitleDouble);
+
+    let btnDoubleUp = document.createElement("button");
+    btnDoubleUp.classList.add('btn-double-up');
+    btnDoubleUp.innerHTML = '<i class="fa-solid fa-caret-up">';
+    cardDouble.appendChild(btnDoubleUp);
+    
+    let scoreNumberDouble = document.createElement('h3')
+    scoreNumberDouble.classList.add('score-sumber-double')
+    scoreNumberDouble.innerHTML = "0"
+    cardDouble.appendChild(scoreNumberDouble)
+
+    let btnDoubleDown = document.createElement("button");
+    btnDoubleDown.classList.add('btn-double-down');
+    btnDoubleDown.innerHTML = '<i class="fa-solid fa-caret-down">';
+    cardDouble.appendChild(btnDoubleDown);
 
     
-})
+    let cardLose = document.createElement("div");
+    cardLose.classList.add("card-lose");
+    cardScore.appendChild(cardLose);
+
+    let scoreTitleLose = document.createElement("p");
+    scoreTitleLose.classList.add("score-title");
+    scoreTitleLose.innerHTML = "CORTADO"
+    cardLose.appendChild(scoreTitleLose);
+
+    let btnLoseUp = document.createElement("button");
+    btnLoseUp.classList.add('btn-lose-up');
+    btnLoseUp.innerHTML = '<i class="fa-solid fa-caret-up">';
+    cardLose.appendChild(btnLoseUp);
+    
+    let scoreNumberLose = document.createElement('h3')
+    scoreNumberLose.classList.add('score-sumber-lose')
+    scoreNumberLose.innerHTML = "0"
+    cardLose.appendChild(scoreNumberLose)
+
+    let btnLoseDown = document.createElement("button");
+    btnLoseDown.classList.add('btn-lose-down');
+    btnLoseDown.innerHTML = '<i class="fa-solid fa-caret-down">';
+    cardLose.appendChild(btnLoseDown);
+
+    let userTotalScore = document.createElement('div')
+    userTotalScore.classList.add('user-score')
+    cardScore.appendChild(userTotalScore)
+
+    let titleUserTotal = document.createElement('p')
+    titleUserTotal.innerHTML = "PONTOS"
+    userTotalScore.appendChild(titleUserTotal)
+
+    let scoreTotalUser = document.createElement('h4')
+    scoreTotalUser.classList.add('score-total')
+    scoreTotalUser.innerHTML = "0"
+    userTotalScore.appendChild(scoreTotalUser)
+    
+}
+
+function toggleFoms(){
+
+    let btnContainer = document.getElementById('btn-container')
+        btnContainer.classList.toggle("hide");
+    
+}
