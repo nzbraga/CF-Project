@@ -11,9 +11,9 @@
 
 body{
     
-    background-image: url("/assets/img/background.webp");
-    background-position: center;
-    background-size:contain;
+    background-image: url("../img/background.png");
+    background-position: top;
+    background-size:cover;
     
 }
 
