@@ -1,5 +1,10 @@
 const header = document.querySelector('header');
 const main = document.querySelectorAll('main');
+let data = new Date();
+let day = data.getDate();
+let month = data.getMonth();
+let fullYear = data.getFullYear();
+
 
 document.addEventListener('click', (e)=>{
     e.preventDefault()
@@ -21,7 +26,6 @@ document.addEventListener('click', (e)=>{
         } 
     
     }
-
     if (targetEl.classList.contains("btn-win-up")) {
 
         scoreWin = parentEl.querySelector('h3')
@@ -128,15 +132,18 @@ document.addEventListener('click', (e)=>{
         parentForm.remove()
     }}
     if(targetEl.classList.contains('btn-edit-card')){
-
+   
         newName = prompt("Qual o nome?")
         if (newName){
+            oldName = parentEl.querySelector('h2')
             
+            oldName.innerHTML = newName 
 
-            editUser()
-        } 
-    }
+            console.log(oldName)
+    }}
     if(targetEl.classList.contains('btn-reset-card')){
+        if (confirm("Apagar PONTOS desse Jogador?") == true) {
+                    
         scoreUser = parentForm.querySelectorAll('h3')
         scoreUserTotal = parentForm.querySelectorAll('h4')
 
@@ -150,7 +157,7 @@ document.addEventListener('click', (e)=>{
             
             scoreUserTotal[i].innerHTML = "0"
         }
-        
+    }
         
     }
     if(targetEl.classList.contains('btn-menu')){
@@ -161,19 +168,19 @@ document.addEventListener('click', (e)=>{
         
         newTitle = prompt("Qual nome do Festival?")
         if (newTitle){
-            
-            let titleTop = document.getElementById('title-top-menu')
-
-            titleTop.innerHTML = newTitle
+            let titleTop = document.getElementById('name-festival')
+            uperTitle = newTitle.toUpperCase()
+            titleTop.innerHTML = uperTitle
         } 
 
         toggleFoms()
 
+    }    
+    if(targetEl.classList.contains('btn-save')){
+        saveLocalStorage()
     }
+});
 
-
-
-})
 function createUser() {
     
     let cardContainer = document.querySelector('main');
@@ -297,10 +304,38 @@ function createUser() {
     userTotalScore.appendChild(scoreTotalUser)
     
 }
-
 function toggleFoms(){
-
     let btnContainer = document.getElementById('btn-container')
-        btnContainer.classList.toggle("hide");
+    
+    btnContainer.classList.toggle("hide");
     
 }
+
+
+function saveLocalStorage(){
+    
+    let cardContainerSave = document.querySelectorAll('.card-container')
+    let nameFestival = document.getElementById('name-festival').innerText;
+    let userName = document.querySelector('.card-title').innerHTML
+    let userWin = document.querySelector('.score-number-win').innerHTML
+    let userDouble = document.querySelector('.score-number-double').innerHTML
+    let userLose = document.querySelector('.score-number-lose').innerHTML
+    let userTotal = document.querySelector('.score-number-win').innerHTML
+    let stringYear = String(fullYear)
+    let year = stringYear.slice(2)
+    let dateSaved = (`(${day}/${month+1}/${year})`)
+    
+    console.log(dateSaved)
+
+    for(i=0, len = cardContainerSave.length; i < len; i++){
+
+    localStorage.setItem(`${nameFestival}${dateSaved}`,JSON.stringify({userName, userWin, userDouble, userLose, userTotal}));
+
+}}
+
+
+function openLocalStorage(){
+
+}
+
+

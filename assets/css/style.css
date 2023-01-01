@@ -51,10 +51,12 @@ header h1 {
     
 }
 
-#btn-container button {
+#btn-container button, 
+#btn-container-user button {
     display: inline-flex;
     padding: .5em 1.1em;
     border: none;
+    margin-bottom: .2em;
 }
 
 .btn-menu, .logo-mushroom {
@@ -81,9 +83,10 @@ header h1 {
     
 }
 
-.card-header h2 {
-    background-color:  rgba(183, 240, 240, 0.2);
-    padding: .05em .2em;
+.card-title {
+    
+    min-width: 60%
+   
 }
 
 .card-header button {
