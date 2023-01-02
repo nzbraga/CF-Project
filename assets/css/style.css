@@ -67,7 +67,16 @@ header h1 {
     padding-top: 1em;
 }
 
-.card {
+#card, 
+#card-open {
+    background-color: rgb(140, 175, 175, .8 );
+    margin: 1em;
+    padding: 1em;
+    
+}
+
+.card, 
+.card-open {
     background-color: rgb(140, 175, 175, .8 );
     margin: 1em;
     padding: 1em;
@@ -89,7 +98,8 @@ header h1 {
    
 }
 
-.card-header button {
+.card-header button,
+.card-header-open button {
     background-color: transparent;
     border: none;
     font-size: 1em;
