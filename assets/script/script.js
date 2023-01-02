@@ -1,7 +1,6 @@
 const header = document.querySelector('header');
 const main = document.querySelectorAll('main');
-let nameFestival = document.getElementById('name-festival')
-
+/*
 let data = new Date();
 let day = data.getDate();
 let month = data.getMonth();
@@ -9,7 +8,37 @@ let fullYear = data.getFullYear();
 let hours = data.getHours()
 let minutes = data.getMinutes()
 let seconds = data.getSeconds()
+*/
 
+for (let[key, value] of Object.entries(localStorage)){
+
+    let cardOpenLocal = document.getElementById('card-open-container')
+    let localStorage = document.getElementById('card-open-container')
+            
+    saveForm = document.createElement('form')
+    saveForm.classList.add('card-open')        
+    saveForm.setAttribute('id', 'card-open')
+    cardOpenLocal.appendChild(saveForm)
+    
+    saveId = document.createElement('h3')
+    saveId.classList.add('save-id')
+    saveId.setAttribute("id","save-id")
+    saveId.innerHTML = (`${key}`)
+    saveForm.appendChild(saveId)
+
+    
+    btnEditCard = document.createElement("button");
+    btnEditCard.classList.add('btn-open-card');
+    btnEditCard.innerHTML = '<i class="fa-regular fa-folder-open"></i>';
+    saveForm.appendChild(btnEditCard);
+        
+    for(i=0, len = localStorage.length; i < len; i++){
+
+    }
+
+        
+    
+}
 
 
 
@@ -19,6 +48,7 @@ document.addEventListener('click', (e)=>{
     const targetEl = e.target;
     const parentEl = targetEl.closest("div");
     const parentForm = targetEl.closest("form");
+    const parentOpen = targetEl.closest('.save-id')
     const parentCard = parentEl.closest(".card-score");
 
     
@@ -188,7 +218,7 @@ document.addEventListener('click', (e)=>{
     }
     if(targetEl.classList.contains('btn-open')){
         let cardContainer = document.querySelector('#card-container');
-        let cardOpen = document.querySelector('#card-open')
+        let cardOpen = document.querySelector('#card-open-container')
 
         cardContainer.classList.toggle('hide');
         cardOpen.classList.toggle('hide');
@@ -204,143 +234,24 @@ document.addEventListener('click', (e)=>{
     }
     if(targetEl.classList.contains('btn-open-card')){
         
-        let saveId = document.querySelector('.save-id').innerHTML
+        let cardContainer = document.querySelector('#card-container');
+        let cardOpen = document.querySelector('#card-open')
+
+        cardContainer.classList.toggle('hide');
+        cardOpen.classList.toggle('hide');
+
+        saveId = parentOpen.closest('#save-id').innerHTML
        
         newOpenLocal = localStorage.getItem(`${saveId}`)
         
         newOpen = JSON.parse(newOpenLocal)
         
-        newOpenName = newOpen.userName
-        newOpenWin = newOpen.userWin
-        newOpenDouble = newOpen.userDouble
-        newOpenLose = newOpen.userLose
-        newOpenTotal = newOpen.userTotal
+        newOpenName.innerHTML = newOpen.userName
+        newOpenWin.innerHTML = newOpen.userWin
+        newOpenDouble.innerHTML = newOpen.userDouble
+        newOpenLose.innerHTML = newOpen.userLose
+        newOpenTotal.innerHTML = newOpen.userTotal
         
-        for(i=0, len = newOpenLocal.length; i < len; i++ ) { 
-
-            
-            let cardContainer = document.querySelector('main');
-
-            let card = document.createElement("form");
-            card.classList.add("card");
-            cardContainer.appendChild(card);    
-            
-            let cardHeader = document.createElement("div");
-            cardHeader.classList.add("card-header");
-            card.appendChild(cardHeader);
-
-            let btnEditCard = document.createElement("button");
-            btnEditCard.classList.add('btn-edit-card');
-            btnEditCard.innerHTML = '<i class="fa-solid fa-user-pen"></i>';
-            cardHeader.appendChild(btnEditCard);
-
-            let cardTitle = document.createElement("h2");
-            cardTitle.innerText = newOpenName;
-            cardHeader.appendChild(cardTitle);
-            
-            let btnResetCard = document.createElement("button");
-            btnResetCard.classList.add('btn-reset-card');
-            btnResetCard.innerHTML = '<i class="fa-solid fa-eraser"></i>';
-            cardHeader.appendChild(btnResetCard);
-
-            let btnDelCard = document.createElement("button");
-            btnDelCard.classList.add('btn-del-card');
-            btnDelCard.innerHTML = '<i class="fa-solid fa-x"></i>';
-            cardHeader.appendChild(btnDelCard);
-            
-            let cardScore = document.createElement("div");
-            cardScore.classList.add("card-score");
-            card.appendChild(cardScore);
-        //
-            let cardWin = document.createElement("div");
-            cardWin.classList.add("card-win");
-            cardScore.appendChild(cardWin);
-
-            let scoreTitleWin = document.createElement("p");
-            scoreTitleWin.classList.add("score-title");
-            scoreTitleWin.innerHTML = "CORTOU"
-            cardWin.appendChild(scoreTitleWin);
-
-            let btnWinUp = document.createElement("button");
-            btnWinUp.classList.add('btn-win-up');
-            btnWinUp.innerHTML = '<i class="fa-solid fa-caret-up">';
-            cardWin.appendChild(btnWinUp);
-            
-            let scoreNumberWin = document.createElement('h3')
-            scoreNumberWin.classList.add('score-sumber-win')
-            scoreNumberWin.innerHTML = newOpenWin
-            cardWin.appendChild(scoreNumberWin)
-
-            let btnWinDown = document.createElement("button");
-            btnWinDown.classList.add('btn-win-down');
-            btnWinDown.innerHTML = '<i class="fa-solid fa-caret-down">';
-            cardWin.appendChild(btnWinDown);
-        //
-            let cardDouble = document.createElement("div");
-            cardDouble.classList.add("Score-double");
-            cardScore.appendChild(cardDouble);
-
-            let scoreTitleDouble = document.createElement("p");
-            scoreTitleDouble.classList.add("score-title");
-            scoreTitleDouble.innerHTML = "APAROU"
-            cardDouble.appendChild(scoreTitleDouble);
-
-            let btnDoubleUp = document.createElement("button");
-            btnDoubleUp.classList.add('btn-double-up');
-            btnDoubleUp.innerHTML = '<i class="fa-solid fa-caret-up">';
-            cardDouble.appendChild(btnDoubleUp);
-            
-            let scoreNumberDouble = document.createElement('h3')
-            scoreNumberDouble.classList.add('score-sumber-double')
-            scoreNumberDouble.innerHTML = newOpenDouble
-            cardDouble.appendChild(scoreNumberDouble)
-
-            let btnDoubleDown = document.createElement("button");
-            btnDoubleDown.classList.add('btn-double-down');
-            btnDoubleDown.innerHTML = '<i class="fa-solid fa-caret-down">';
-            cardDouble.appendChild(btnDoubleDown);
-
-            
-            let cardLose = document.createElement("div");
-            cardLose.classList.add("card-lose");
-            cardScore.appendChild(cardLose);
-
-            let scoreTitleLose = document.createElement("p");
-            scoreTitleLose.classList.add("score-title");
-            scoreTitleLose.innerHTML = "CORTADO"
-            cardLose.appendChild(scoreTitleLose);
-
-            let btnLoseUp = document.createElement("button");
-            btnLoseUp.classList.add('btn-lose-up');
-            btnLoseUp.innerHTML = '<i class="fa-solid fa-caret-up">';
-            cardLose.appendChild(btnLoseUp);
-            
-            let scoreNumberLose = document.createElement('h3')
-            scoreNumberLose.classList.add('score-sumber-lose')
-            scoreNumberLose.innerHTML = newOpenLose
-            cardLose.appendChild(scoreNumberLose)
-
-            let btnLoseDown = document.createElement("button");
-            btnLoseDown.classList.add('btn-lose-down');
-            btnLoseDown.innerHTML = '<i class="fa-solid fa-caret-down">';
-            cardLose.appendChild(btnLoseDown);
-
-            let userTotalScore = document.createElement('div')
-            userTotalScore.classList.add('user-score')
-            cardScore.appendChild(userTotalScore)
-
-            let titleUserTotal = document.createElement('p')
-            titleUserTotal.innerHTML = "PONTOS"
-            userTotalScore.appendChild(titleUserTotal)
-
-            let scoreTotalUser = document.createElement('h4')
-            scoreTotalUser.classList.add('score-total')
-            scoreTotalUser.innerHTML = newOpenTotal
-            userTotalScore.appendChild(scoreTotalUser)
-        
-
-        }
-
     }
 });
 
@@ -362,8 +273,9 @@ function createUser() {
     cardHeader.appendChild(btnEditCard);
 
     let cardTitle = document.createElement("h2");
+    cardTitle.classList.add('card-title')
     userName = newName.toUpperCase();
-    cardTitle.innerText = userName.slice(0,8);
+    cardTitle.innerHTML = userName.slice(0,8);
     cardHeader.appendChild(cardTitle);
     
     let btnResetCard = document.createElement("button");
@@ -395,7 +307,7 @@ function createUser() {
     cardWin.appendChild(btnWinUp);
     
     let scoreNumberWin = document.createElement('h3')
-    scoreNumberWin.classList.add('score-sumber-win')
+    scoreNumberWin.classList.add('score-number-win')
     scoreNumberWin.innerHTML = "0"
     cardWin.appendChild(scoreNumberWin)
 
@@ -419,7 +331,7 @@ function createUser() {
     cardDouble.appendChild(btnDoubleUp);
     
     let scoreNumberDouble = document.createElement('h3')
-    scoreNumberDouble.classList.add('score-sumber-double')
+    scoreNumberDouble.classList.add('score-number-double')
     scoreNumberDouble.innerHTML = "0"
     cardDouble.appendChild(scoreNumberDouble)
 
@@ -444,7 +356,7 @@ function createUser() {
     cardLose.appendChild(btnLoseUp);
     
     let scoreNumberLose = document.createElement('h3')
-    scoreNumberLose.classList.add('score-sumber-lose')
+    scoreNumberLose.classList.add('score-number-lose')
     scoreNumberLose.innerHTML = "0"
     cardLose.appendChild(scoreNumberLose)
 
@@ -475,41 +387,24 @@ function toggleFoms(){
 }
 function saveLocalStorage(){
     
-    let cardContainerSave = document.querySelectorAll('.card-container')
-    let nameFestival = document.getElementById('name-festival').innerText;
-    let userCard = document.querySelectorAll('#card')
-    let userName = document.querySelector('.card-title').innerHTML
-    let userWin = document.querySelector('.score-number-win').innerHTML
-    let userDouble = document.querySelector('.score-number-double').innerHTML
-    let userLose = document.querySelector('.score-number-lose').innerHTML
-    let userTotal = document.querySelector('.score-total').innerHTML
-    let openCard = document.querySelector('#card-open')
+    let cardContainer = document.querySelectorAll('#card-container')
+    
+    for(i=0, len = cardContainer.length; i < len; i++){
+    
+    let card = document.querySelectorAll('#card')
+    let nameFestival = document.getElementById('name-festival').innerHTML;
+    let userSaveName = document.querySelector('.card-title').innerHTML
+    let userSaveWin = document.querySelector('.score-number-win').innerHTML
+    let userSaveDouble = document.querySelector('.score-number-double').innerHTML
+    let userSaveLose = document.querySelector('.score-number-lose').innerHTML
+    let userSaveTotal = document.querySelector('.score-total').innerHTML
     
     
-    let stringYear = String(fullYear)
-    let year = stringYear.slice(2)
-    let dateSaved = (`(${day}/${month+1}/${year}<br> ${hours}:${minutes}:${seconds})`)
-
-
-    let cardHeaderOpen = document.createElement("div");
-    cardHeaderOpen.classList.add("card-header-open");
-    openCard.appendChild(cardHeaderOpen);
-          
-    let cardTitle = document.createElement("h3");
-    cardTitle.classList.add('save-id')    
-    userNameSave = String(`${nameFestival}${dateSaved}`)
-    cardTitle.innerHTML = userNameSave;
-    cardHeaderOpen.appendChild(cardTitle);
-
-    let btnEditCard = document.createElement("button");
-    btnEditCard.classList.add('btn-open-card');
-    btnEditCard.innerHTML = '<i class="fa-regular fa-folder-open"></i>';
-    cardHeaderOpen.appendChild(btnEditCard);
+   
+    localStorage.setItem(`${nameFestival}`,JSON.stringify({userSaveName, userSaveWin, userSaveDouble, userSaveLose, userSaveTotal}));
         
-    for(i=0, len = cardContainerSave.length; i < len; i++){
-
-    localStorage.setItem(`${nameFestival}${dateSaved}`,JSON.stringify({userName, userWin, userDouble, userLose, userTotal}));
+    card.remove()
 
     }
-    
 }
+    
