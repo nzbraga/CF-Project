@@ -221,7 +221,7 @@ document.addEventListener('click', (e)=>{
         btnContainer.classList.toggle('hide');        
         cardOpen.classList.toggle('hide');
         //titleFestival.classList.toggle('hide');
-        titleOpen.classList.toggle('hide');
+       // titleOpen.classList.toggle('hide');
 
     }
     if(targetEl.classList.contains('btn-delete')){
@@ -381,8 +381,16 @@ document.addEventListener('click', (e)=>{
         
     }    
     if(targetEl.classList.contains('btn-delet-card')){
-        console.log(targetEl)
-        console.log(parentForm)
+        
+        let deleteIdlocal = parentForm.querySelector('#save-id').innerHTML
+        
+
+        localStorage.removeItem(`${deleteIdlocal}`)
+
+        console.log(deleteIdlocal)
+
+        location.reload()
+        
     }
 });
 function createUser() {
