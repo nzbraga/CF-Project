@@ -1,56 +1,39 @@
 * {
-
     margin: 0;
     box-sizing: border-box;
-    font-family: 'fira-sans-condensed', sans-serif;
+    font-family: 'Happy-Monkey', sans-serif;
     align-content: center;
     text-align: center;
-    border-radius: 5px;
-    
+    border-radius: 5px;    
 }
-
-body{
-    
+body{    
     background-image: url("../img/background.png");
     background-position: top;
     background-size:cover;
-    
 }
-
-
 button i {
     pointer-events: none;
 }
-
 button:active {
     cursor: pointer;
     transform: scale(1.05);
-    
 }
-
-
-
 header {
-
     background-color: rgba(140, 175, 175, 0.6);
     margin: 1em;
     padding-bottom: .5em;
 }
-
 header h1 {
-
+    font-family: 'Happy Monkey', sans-serif;
     padding-top: .5em;
 }
-
 .top-menu {
-
+    font-family: 'Happy-Monkey', sans-serif;
     display: flex;
     justify-content: space-around;
     font-size: 1.5em;
     margin-bottom: .4em;
-    
 }
-
 #btn-container button, 
 #btn-container-user button {
     display: inline-flex;
@@ -58,7 +41,6 @@ header h1 {
     border: none;
     margin-bottom: .2em;
 }
-
 .btn-menu, .logo-mushroom {
     background-color: transparent;
     margin: auto;
@@ -66,56 +48,43 @@ header h1 {
     font-size: 1em;
     padding-top: 1em;
 }
-
 #card, 
 #card-open {
     background-color: rgb(140, 175, 175, .8 );
     margin: 1em;
     padding: 1em;
-    
 }
-
 .card, 
 .card-open {
     background-color: rgb(140, 175, 175, .8 );
     margin: 1em;
     padding: 1em;
-    
 }
-
-
+.card-open {
+    display: inline-flex;
+}
 .card-header {
     display: flex;
     justify-content: space-between;
     font-size: 1.5em;
-    margin-bottom: .4em;
-    
+    margin-bottom: .4em;    
 }
-
-.card-title {
-    
-    min-width: 60%
-   
+.card-title {    
+    min-width: 60%   
 }
-
 .card-header button,
 .card-header-open button {
     background-color: transparent;
     border: none;
     font-size: 1em;
 }
-
-
 .card-score {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-
 }
-
 .card-score h4 {
     font-size: .6em;
 }
-
 .card-score button {
     width: 5em;
     border: none;
@@ -124,18 +93,23 @@ header h1 {
     font-size:  3em;
     background-color: rgba(183, 240, 240, 0.2);
     max-width: 1.3em;
-    margin: auto;   
-
-    
+    margin: auto;
 }
-
-.user-score h4 {
-    
+.user-score h4 {    
     font-size: 5em;
     font-weight: bolder;
-
 }
-
+.title-card-open {
+    display: inline-flex;
+    padding: 1em 5.5em;
+    background-color: rgb(5, 60, 212, 0.6);
+}
+.save-id {    
+    text-align: center;
+    align-content: center;
+    padding: .2em  2em;
+    background-color: rgb(216, 81, 27, 0.4);
+}
 
 .hide {
     display: none;

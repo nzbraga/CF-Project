@@ -20,16 +20,20 @@ for (let[key, value] of Object.entries(localStorage)){
     saveForm.setAttribute('id', 'card-open')
     cardOpenLocal.appendChild(saveForm)
     
+    btnEditCard = document.createElement("button");
+    btnEditCard.classList.add('btn-open-card');
+    btnEditCard.innerHTML = '<i class="fa-regular fa-folder-open"></i>';
+    saveForm.appendChild(btnEditCard);
+    
     saveId = document.createElement('h3')
     saveId.classList.add('save-id')
     saveId.setAttribute("id","save-id")
     saveId.innerHTML = (`${key}`)
     saveForm.appendChild(saveId)
 
-    
     btnEditCard = document.createElement("button");
-    btnEditCard.classList.add('btn-open-card');
-    btnEditCard.innerHTML = '<i class="fa-regular fa-folder-open"></i>';
+    btnEditCard.classList.add('btn-delet-card');
+    btnEditCard.innerHTML = '<i class="fa-solid fa-x"></i>';
     saveForm.appendChild(btnEditCard);
         
     for(i=0, len = localStorage.length; i < len; i++){
@@ -48,7 +52,7 @@ document.addEventListener('click', (e)=>{
     const targetEl = e.target;
     const parentEl = targetEl.closest("div");
     const parentForm = targetEl.closest("form");
-    const parentOpen = targetEl.closest('.save-id')
+    //const parentOpen = targetEl.closest('h3')
     const parentCard = parentEl.closest(".card-score");
 
     
@@ -61,7 +65,7 @@ document.addEventListener('click', (e)=>{
         if (newName){
             createUser()
         } 
-    
+        
     }
     if (targetEl.classList.contains("btn-win-up")) {
 
@@ -174,7 +178,7 @@ document.addEventListener('click', (e)=>{
         if (newName){
             oldName = parentEl.querySelector('h2')
             
-            oldName.innerHTML = newName 
+            oldName.innerHTML = newName.toUpperCase() 
 
             console.log(oldName)
     }}
@@ -198,8 +202,18 @@ document.addEventListener('click', (e)=>{
         
     }
     if(targetEl.classList.contains('btn-menu')){
-
-       toggleFoms()
+        
+        let cardContainer = document.querySelector('#card-container');
+        let btnContainer = document.getElementById('btn-container')
+        let cardOpen = document.querySelector('#card-open-container')
+        //let titleFestival = document.querySelector('#name-festival') 
+        
+        cardContainer.classList.toggle('hide');
+        btnContainer.classList.toggle('hide');        
+        cardOpen.classList.toggle('hide');
+        //titleFestival.classList.toggle('hide');
+        titleOpen.classList.toggle('hide');
+       
     }
     if(targetEl.classList.contains('btn-title-menu')){
         
@@ -209,20 +223,31 @@ document.addEventListener('click', (e)=>{
             uperTitle = newTitle.toUpperCase()
             titleTop.innerHTML = uperTitle
         } 
-
+        
         toggleFoms()
-
+        
     }    
     if(targetEl.classList.contains('btn-save')){
-        saveLocalStorage()
+        saveLocalStorage()     
     }
     if(targetEl.classList.contains('btn-open')){
         let cardContainer = document.querySelector('#card-container');
+        let btnContainer = document.getElementById('btn-container')
         let cardOpen = document.querySelector('#card-open-container')
-
+        //let titleFestival = document.querySelector('#name-festival') 
+                
         cardContainer.classList.toggle('hide');
+        btnContainer.classList.toggle('hide');        
         cardOpen.classList.toggle('hide');
+        //titleFestival.classList.toggle('hide');
+        titleOpen.classList.toggle('hide');
 
+    }
+    if(targetEl.classList.contains('btn-delete')){
+        if (confirm("Apagar dados Salvos?") == true) {
+            localStorage.clear()      
+        }
+        location.reload()
     }
     if(targetEl.classList.contains('card-container-home')){
         let cardContainer = document.querySelector('#card-container');
@@ -231,27 +256,18 @@ document.addEventListener('click', (e)=>{
         cardContainer.classList.toggle('hide');
         cardOpen.classList.toggle('hide');
 
+        location.reload()
     }
     if(targetEl.classList.contains('btn-open-card')){
-        
-        let cardContainer = document.querySelector('#card-container');
-        let cardOpen = document.querySelector('#card-open')
 
-        cardContainer.classList.toggle('hide');
-        cardOpen.classList.toggle('hide');
-
-        saveId = parentOpen.closest('#save-id').innerHTML
-       
-        newOpenLocal = localStorage.getItem(`${saveId}`)
-        
-        newOpen = JSON.parse(newOpenLocal)
-        
-        newOpenName.innerHTML = newOpen.userName
-        newOpenWin.innerHTML = newOpen.userWin
-        newOpenDouble.innerHTML = newOpen.userDouble
-        newOpenLose.innerHTML = newOpen.userLose
-        newOpenTotal.innerHTML = newOpen.userTotal
-        
+        let cardOpenCard = document.querySelectorAll('#card-open-container')
+            for (i=0, len = cardOpenCard.length; i < len ; i++){
+            console.log(`passo numero ${i}`)
+        }
+    }
+    if(targetEl.classList.contains('btn-delet-card')){
+        console.log(targetEl)
+        console.log(parentForm)
     }
 });
 
@@ -260,6 +276,7 @@ function createUser() {
     let cardContainer = document.querySelector('main');
 
     let card = document.createElement("form");
+    card.setAttribute('id', 'card')
     card.classList.add("card");
     cardContainer.appendChild(card);    
     
@@ -291,7 +308,7 @@ function createUser() {
     let cardScore = document.createElement("div");
     cardScore.classList.add("card-score");
     card.appendChild(cardScore);
-//
+
     let cardWin = document.createElement("div");
     cardWin.classList.add("card-win");
     cardScore.appendChild(cardWin);
@@ -315,7 +332,7 @@ function createUser() {
     btnWinDown.classList.add('btn-win-down');
     btnWinDown.innerHTML = '<i class="fa-solid fa-caret-down">';
     cardWin.appendChild(btnWinDown);
-//
+
     let cardDouble = document.createElement("div");
     cardDouble.classList.add("Score-double");
     cardScore.appendChild(cardDouble);
@@ -379,32 +396,33 @@ function createUser() {
     userTotalScore.appendChild(scoreTotalUser)
     
 }
-function toggleFoms(){
-    let btnContainer = document.getElementById('btn-container')
-    
-    btnContainer.classList.toggle("hide");
-    
-}
+
 function saveLocalStorage(){
     
-    let cardContainer = document.querySelectorAll('#card-container')
-    
-    for(i=0, len = cardContainer.length; i < len; i++){
-    
-    let card = document.querySelectorAll('#card')
-    let nameFestival = document.getElementById('name-festival').innerHTML;
-    let userSaveName = document.querySelector('.card-title').innerHTML
-    let userSaveWin = document.querySelector('.score-number-win').innerHTML
-    let userSaveDouble = document.querySelector('.score-number-double').innerHTML
-    let userSaveLose = document.querySelector('.score-number-lose').innerHTML
-    let userSaveTotal = document.querySelector('.score-total').innerHTML
-    
-    
-   
-    localStorage.setItem(`${nameFestival}`,JSON.stringify({userSaveName, userSaveWin, userSaveDouble, userSaveLose, userSaveTotal}));
+    let cardSave = document.querySelectorAll('#card')
         
-    card.remove()
+    let localFestival = new Array() 
 
+    for(i=0, len = cardSave.length; i < len; i++){
+        
+        let nameFestival = document.getElementById('name-festival').innerHTML;
+        let userSaveName = document.querySelector('.card-title').innerHTML
+        let userSaveWin = document.querySelector('.score-number-win').innerHTML
+        let userSaveDouble = document.querySelector('.score-number-double').innerHTML
+        let userSaveLose = document.querySelector('.score-number-lose').innerHTML
+        let userSaveTotal = document.querySelector('.score-total').innerHTML
+        
+    if(localStorage.hasOwnProperty(`${nameFestival}`)){
+        localFestival =  JSON.parse(localStorage.getItem(`${nameFestival}`))
     }
-}
     
+    localFestival.push({userSaveName, userSaveWin, userSaveDouble, userSaveLose, userSaveTotal})
+    
+    localStorage.setItem(`${nameFestival}`,JSON.stringify(localFestival));
+    
+
+        cardSave[i].remove()
+    }
+
+    location.reload()
+}
