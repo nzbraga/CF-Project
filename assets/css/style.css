@@ -41,12 +41,12 @@ header h1 {
     border: none;
     margin-bottom: .2em;
 }
-.btn-menu, .logo-mushroom {
+.btn-menu, .card-container-home {
     background-color: transparent;
     margin: auto;
     border: none;
     font-size: 1em;
-    padding-top: 1em;
+    padding: 1em;
 }
 #card, 
 #card-open {
@@ -60,10 +60,15 @@ header h1 {
     margin: 1em;
     padding: 1em;
 }
-.card-open {
-    display: inline-flex;
+
+.card-open button {
+    
+    margin: auto;
+    border: none;
+    font-size: 1em;
+    padding:  1em;
 }
-.card-header {
+.card-header, .card-open {
     display: flex;
     justify-content: space-between;
     font-size: 1.5em;
@@ -107,8 +112,9 @@ header h1 {
 .save-id {    
     text-align: center;
     align-content: center;
-    padding: .2em  2em;
-    background-color: rgb(216, 81, 27, 0.4);
+    padding: .8em  2em;
+    background-color: rgba(5, 2, 0, 0.4);
+    margin: auto;
 }
 
 .hide {

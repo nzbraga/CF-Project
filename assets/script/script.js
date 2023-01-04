@@ -241,10 +241,18 @@ document.addEventListener('click', (e)=>{
     }
     if(targetEl.classList.contains('btn-open-card')){
         
+        let cardContainerOpen = document.querySelector('#card-open-container')
         let openSaveId = parentForm.querySelector('#save-id').innerHTML
         let cardId = document.querySelector('#card-container')
+        let btnContainerMenu = document.querySelector('#btn-container')
+
+        cardContainerOpen.classList.toggle('hide')
+        cardId.classList.toggle('hide')
+        btnContainerMenu.classList.toggle('hide')
         
         openId = JSON.parse(localStorage.getItem(`${openSaveId}`)) 
+
+        cardId.innerHTML = ""
         
         for(i=0, len = openId.length; i < len; i++){
                  
