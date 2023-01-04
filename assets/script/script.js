@@ -1,14 +1,5 @@
 const header = document.querySelector('header');
 const main = document.querySelectorAll('main');
-/*
-let data = new Date();
-let day = data.getDate();
-let month = data.getMonth();
-let fullYear = data.getFullYear();
-let hours = data.getHours()
-let minutes = data.getMinutes()
-let seconds = data.getSeconds()
-*/
 
 for (let[key, value] of Object.entries(localStorage)){
 
@@ -39,24 +30,14 @@ for (let[key, value] of Object.entries(localStorage)){
     for(i=0, len = localStorage.length; i < len; i++){
 
     }
-
-        
-    
 }
-
-
-
 document.addEventListener('click', (e)=>{
     e.preventDefault()
-
     const targetEl = e.target;
     const parentEl = targetEl.closest("div");
     const parentForm = targetEl.closest("form");
     //const parentOpen = targetEl.closest('h3')
-    const parentCard = parentEl.closest(".card-score");
-
-    
-
+    const parentCard = parentEl.closest(".card-score");   
 
     if (targetEl.classList.contains("add-user")){
 
@@ -259,18 +240,143 @@ document.addEventListener('click', (e)=>{
         location.reload()
     }
     if(targetEl.classList.contains('btn-open-card')){
+        
+        let openSaveId = parentForm.querySelector('#save-id').innerHTML
+        let cardId = document.querySelector('#card-container')
+        
+        openId = JSON.parse(localStorage.getItem(`${openSaveId}`)) 
+        
+        for(i=0, len = openId.length; i < len; i++){
+                 
+        let card = document.createElement("form");
+        card.setAttribute('id', 'card')
+        card.classList.add("card");
+        cardId.appendChild(card);    
+        
+        let cardHeader = document.createElement("div");
+        cardHeader.classList.add("card-header");
+        card.appendChild(cardHeader);
 
-        let cardOpenCard = document.querySelectorAll('#card-open-container')
-            for (i=0, len = cardOpenCard.length; i < len ; i++){
-            console.log(`passo numero ${i}`)
-        }
+        let btnEditCard = document.createElement("button");
+        btnEditCard.classList.add('btn-edit-card');
+        btnEditCard.innerHTML = '<i class="fa-solid fa-user-pen"></i>';
+        cardHeader.appendChild(btnEditCard);
+        
+        let cardTitle = document.createElement("h2");
+        cardTitle.classList.add('card-title')
+        newName = openId[i].userSaveName
+        userName = newName.toUpperCase();
+        cardTitle.innerHTML = userName.slice(0,8);
+        cardHeader.appendChild(cardTitle);
+        
+        let btnResetCard = document.createElement("button");
+        btnResetCard.classList.add('btn-reset-card');
+        btnResetCard.innerHTML = '<i class="fa-solid fa-eraser"></i>';
+        cardHeader.appendChild(btnResetCard);
+                
+        let btnDelCard = document.createElement("button");
+        btnDelCard.classList.add('btn-del-card');
+        btnDelCard.innerHTML = '<i class="fa-solid fa-x"></i>';
+        cardHeader.appendChild(btnDelCard);
+        
+        let cardScore = document.createElement("div");
+        cardScore.classList.add("card-score");
+        card.appendChild(cardScore);
+    
+        let cardWin = document.createElement("div");
+        cardWin.classList.add("card-win");
+        cardScore.appendChild(cardWin);
+    
+        let scoreTitleWin = document.createElement("p");
+        scoreTitleWin.classList.add("score-title");
+        scoreTitleWin.innerHTML = "CORTOU"
+        cardWin.appendChild(scoreTitleWin);
+    
+        let btnWinUp = document.createElement("button");
+        btnWinUp.classList.add('btn-win-up');
+        btnWinUp.innerHTML = '<i class="fa-solid fa-caret-up">';
+        cardWin.appendChild(btnWinUp);
+        
+        let scoreNumberWin = document.createElement('h3')
+        scoreNumberWin.classList.add('score-number-win')
+        scoreNumberWin.innerHTML = openId[i].userSaveWin
+        cardWin.appendChild(scoreNumberWin)
+    
+        let btnWinDown = document.createElement("button");
+        btnWinDown.classList.add('btn-win-down');
+        btnWinDown.innerHTML = '<i class="fa-solid fa-caret-down">';
+        cardWin.appendChild(btnWinDown);
+    
+        let cardDouble = document.createElement("div");
+        cardDouble.classList.add("Score-double");
+        cardScore.appendChild(cardDouble);
+    
+        let scoreTitleDouble = document.createElement("p");
+        scoreTitleDouble.classList.add("score-title");
+        scoreTitleDouble.innerHTML = "APAROU"
+        cardDouble.appendChild(scoreTitleDouble);
+    
+        let btnDoubleUp = document.createElement("button");
+        btnDoubleUp.classList.add('btn-double-up');
+        btnDoubleUp.innerHTML = '<i class="fa-solid fa-caret-up">';
+        cardDouble.appendChild(btnDoubleUp);
+        
+        let scoreNumberDouble = document.createElement('h3')
+        scoreNumberDouble.classList.add('score-number-double')
+        scoreNumberDouble.innerHTML = openId[i].userSaveDouble
+        cardDouble.appendChild(scoreNumberDouble)
+    
+        let btnDoubleDown = document.createElement("button");
+        btnDoubleDown.classList.add('btn-double-down');
+        btnDoubleDown.innerHTML = '<i class="fa-solid fa-caret-down">';
+        cardDouble.appendChild(btnDoubleDown);
+    
+        
+        let cardLose = document.createElement("div");
+        cardLose.classList.add("card-lose");
+        cardScore.appendChild(cardLose);
+    
+        let scoreTitleLose = document.createElement("p");
+        scoreTitleLose.classList.add("score-title");
+        scoreTitleLose.innerHTML = "CORTADO"
+        cardLose.appendChild(scoreTitleLose);
+    
+        let btnLoseUp = document.createElement("button");
+        btnLoseUp.classList.add('btn-lose-up');
+        btnLoseUp.innerHTML = '<i class="fa-solid fa-caret-up">';
+        cardLose.appendChild(btnLoseUp);
+        
+        let scoreNumberLose = document.createElement('h3')
+        scoreNumberLose.classList.add('score-number-lose')
+        scoreNumberLose.innerHTML = openId[i].userSaveLose
+        cardLose.appendChild(scoreNumberLose)
+    
+        let btnLoseDown = document.createElement("button");
+        btnLoseDown.classList.add('btn-lose-down');
+        btnLoseDown.innerHTML = '<i class="fa-solid fa-caret-down">';
+        cardLose.appendChild(btnLoseDown);
+    
+        let userTotalScore = document.createElement('div')
+        userTotalScore.classList.add('user-score')
+        cardScore.appendChild(userTotalScore)
+    
+        let titleUserTotal = document.createElement('p')
+        titleUserTotal.innerHTML = "PONTOS"
+        userTotalScore.appendChild(titleUserTotal)
+    
+        let scoreTotalUser = document.createElement('h4')
+        scoreTotalUser.classList.add('score-total')
+        scoreTotalUser.innerHTML = openId[i].userSaveTotal
+        userTotalScore.appendChild(scoreTotalUser)    
+           
     }
+        
+    }    
     if(targetEl.classList.contains('btn-delet-card')){
         console.log(targetEl)
         console.log(parentForm)
     }
 });
-
 function createUser() {
     
     let cardContainer = document.querySelector('main');
@@ -396,7 +502,6 @@ function createUser() {
     userTotalScore.appendChild(scoreTotalUser)
     
 }
-
 function saveLocalStorage(){
     
     let cardSave = document.querySelectorAll('#card')
