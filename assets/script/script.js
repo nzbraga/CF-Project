@@ -36,7 +36,6 @@ document.addEventListener('click', (e)=>{
     const targetEl = e.target;
     const parentEl = targetEl.closest("div");
     const parentForm = targetEl.closest("form");
-    //const parentOpen = targetEl.closest('h3')
     const parentCard = parentEl.closest(".card-score");   
 
     if (targetEl.classList.contains("add-user")){
@@ -69,11 +68,12 @@ document.addEventListener('click', (e)=>{
         
         addWin = scoreWin.innerHTML
         newScore = parseInt(addWin)
+        if(newScore >= 1 ){
         scoreWin.innerHTML = newScore -1        
         addScoreTotal = totalScore.innerHTML
         newScoreTotal = parseInt(addScoreTotal)
         totalScore.innerHTML = newScoreTotal -1
-                
+        }     
     }    
     if (targetEl.classList.contains("btn-double-up")) {
 
@@ -94,20 +94,22 @@ document.addEventListener('click', (e)=>{
     
         addDouble = scoreDouble.innerHTML
         newScore = parseInt(addDouble)
-        scoreDouble.innerHTML = newScore -1        
-        addScoreTotal = totalScore.innerHTML
-        newScoreTotal = parseInt(addScoreTotal)
-        totalScore.innerHTML = newScoreTotal -2
+        if(newScore >= 1 ){
+            scoreDouble.innerHTML = newScore -1        
+            addScoreTotal = totalScore.innerHTML
+            newScoreTotal = parseInt(addScoreTotal)
+            totalScore.innerHTML = newScoreTotal -2
+        }
     }    
     if (targetEl.classList.contains("btn-lose-up")) {
 
         scoreLose = parentEl.querySelector('h3')
         totalScore = parentCard.querySelector('h4')
     
-        
         addLose = scoreLose.innerHTML
         newScore = parseInt(addLose)
-        scoreLose.innerHTML = newScore +1        
+        scoreLose.innerHTML = newScore +1   
+        
         addScoreTotal = totalScore.innerHTML
         newScoreTotal = parseInt(addScoreTotal)
         totalScore.innerHTML = newScoreTotal -1
@@ -119,11 +121,13 @@ document.addEventListener('click', (e)=>{
         
         addLose = scoreLose.innerHTML
         newScore = parseInt(addLose)
+        if(newScore >= 1 ){
         scoreLose.innerHTML = newScore -1        
         addScoreTotal = totalScore.innerHTML
         newScoreTotal = parseInt(addScoreTotal)
         totalScore.innerHTML = newScoreTotal +1
-    }    
+        }
+    }
     if (targetEl.classList.contains("clear-score")) {
         
         if (confirm("Apagar TODOS Pontos?") == true) {
